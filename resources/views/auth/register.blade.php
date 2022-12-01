@@ -1,5 +1,7 @@
 @extends('layouts.form')
 
+@section('title', 'Registrate')
+
 @section('content')
 
     <div class="container mt--8 pb-5">
@@ -59,7 +61,7 @@
                     </div>
                   </div>
 
-                <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>
+                <div class="text-muted font-bold"><strong>Seguridad de la Contraseña: <span class="text-success font-weight-700">strong</span></strong></div>
                 <div class="text-center">
 
                   <button type="submit" class="btn btn-primary mt-4">Crear Cuenta</button>
