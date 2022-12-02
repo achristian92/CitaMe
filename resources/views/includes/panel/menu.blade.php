@@ -22,12 +22,12 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="#"
+      <a class="nav-link" href="{{ route('logout')}}"
       onclick="event.preventDefault(); document.getElementById('formLogout').submit();"
       >
         <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
       </a>
-      <form action="{{ route('logout')}}" method="POST" style="display: none;" id="formLogout">
+    <form action="{{ route('logout')}}" method="POST" style="display: none;" id="formLogout">
         @csrf
     </form>
     </li>
