@@ -60,8 +60,6 @@
                       <input class="form-control" placeholder=" Confirmar Contraseña" type="password" name="password_confirmation" required autocomplete="new-password">
                     </div>
                   </div>
-
-                <div class="text-muted font-bold"><strong>Seguridad de la Contraseña: <span class="text-success font-weight-700">strong</span></strong></div>
                 <div class="text-center">
 
                   <button type="submit" class="btn btn-primary mt-4">Crear Cuenta</button>
