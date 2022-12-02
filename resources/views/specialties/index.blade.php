@@ -19,7 +19,7 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Description</th>
+            <th scope="col">Descripción</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>

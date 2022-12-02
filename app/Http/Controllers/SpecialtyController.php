@@ -15,4 +15,9 @@ class SpecialtyController extends Controller
     {
         return view('specialties.index');
     }
+
+    public function create()
+    {
+        return view ('specialties.create');
+    }
 }
