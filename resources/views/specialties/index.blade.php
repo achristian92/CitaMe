@@ -24,17 +24,22 @@
           </tr>
         </thead>
         <tbody>
+
+            @foreach ( $specialties as $especialidad )
           <tr>
             <th scope="row">
-              /argon/
+              {{ $especialidad->name}}
             </th>
             <td>
-              4,569
+              {{ $especialidad->description}}
             </td>
             <td>
                 <a href="" class="btn btn-sn btn-primary" >Editar</a>
                 <a href="" class="btn btn-sn btn-danger" >Eliminar</a>
             </td>
+            </tr>
+            @endforeach
+
         </tbody>
       </table>
     </div>

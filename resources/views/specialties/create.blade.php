@@ -17,7 +17,8 @@
     </div>
 
     <div class="card-body">
-        <form action="">
+        <form action="{{ url('/especialidades')}}" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" class="form-control">
