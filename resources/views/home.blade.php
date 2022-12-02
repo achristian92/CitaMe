@@ -6,7 +6,7 @@
 
     <div class="col-md-12 mb-4  ">
         <div class="card">
-            <div class="card-header">{{ __('Dashboard') }}</div>
+            <div class="card-header">{{ __('Ingresaste al Sistema') }}</div>
 
             <div class="card-body">
                 @if (session('status'))
@@ -15,7 +15,7 @@
                     </div>
                 @endif
 
-                {{ __('Bienvenido!') }}
+                {{ __('Siéntete como en Casa eres Bienvenido!') }}
             </div>
         </div>
     </div>
