@@ -11,7 +11,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link " href="#">
+      <a class="nav-link " href="/medicos">
         <i class="fas fa-stethoscope text-info"></i> Médicos
       </a>
     </li>
