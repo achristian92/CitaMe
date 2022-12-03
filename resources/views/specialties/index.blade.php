@@ -13,6 +13,13 @@
         </div>
       </div>
     </div>
+    <div class="card-body">
+        @if (session('notification'))
+        <div class="alert alert-success" role="alert">
+            {{ session('notification')}}
+        </div>
+        @endif
+    </div>
     <div class="table-responsive">
       <!-- Projects table -->
       <table class="table align-items-center table-flush">
@@ -37,7 +44,7 @@
                 <form action="{{ url('especialidades/'.$especialidad->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <a href="{{ url('/especialidades/'.$especialidad->id.'/edit')}}" class="btn btn-sn btn-primary" >Editar</a>
+                    <a href="{{ url('/especialidades/'.$especialidad->id.'/edit')}}" class="btn btn-sn btn-primary">Editar</a>
                     <button type="submit" class="btn btn-sn btn-danger">Eliminar</button>
                 </form>
             </td>

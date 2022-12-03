@@ -43,7 +43,9 @@ class SpecialtyController extends Controller
         $specialty-> description = $request->input('description');
         $specialty->save();
 
-        return redirect('/especialidades');
+        $notification = 'Dato Creado con Éxito';
+
+        return redirect('/especialidades')->with(compact('notification'));
     }
 
     public function edit(Specialty $specialty)
@@ -70,12 +72,17 @@ class SpecialtyController extends Controller
         $specialty-> description = $request->input('description');
         $specialty->save();
 
-        return redirect('/especialidades');
+        $notification = 'Dato Actualizado con Éxito';
+
+        return redirect('/especialidades')->with(compact('notification'));
     }
 
     public function destroy(Specialty $specialty)
     {
+        $deleteName = $specialty->name;
         $specialty->delete();
-        return redirect('/especialidades');
+        $notification = 'El Dato'.$deleteName.'Eliminado con Éxito.';
+
+        return redirect('/especialidades')->with(compact('notification'));
     }
 }
