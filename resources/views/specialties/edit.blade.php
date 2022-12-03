@@ -6,7 +6,7 @@
     <div class="card-header border-0">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="mb-0">Generar Nuevo</h3>
+          <h3 class="mb-0">Actualizar</h3>
         </div>
         <div class="col text-right">
           <a href="{{ url('/especialidades')}}" class="btn btn-sm btn-success">
@@ -27,18 +27,19 @@
         @endforeach
         @endif
 
-        <form action="{{ url('/especialidades')}}" method="POST">
+        <form action="{{ url('/especialidades/'.$specialty->id)}}" method="POST">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name')}}" required>
+                <input type="text" name="name" class="form-control" value="{{ old('name', $specialty->name)}}" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <input type="text" name="description" class="form-control" value={{ old('description')}}>
+                <input type="text" name="description" class="form-control" value={{ old('description', $specialty->description)}}>
             </div>
-            <button type="submit" class="btn btn-sm btn-primary">Añadir</button>
+            <button type="submit" class="btn btn-sm btn-primary">Modificar</button>
         </form>
     </div>
 

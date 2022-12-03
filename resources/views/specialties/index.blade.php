@@ -34,8 +34,12 @@
               {{ $especialidad->description}}
             </td>
             <td>
-                <a href="" class="btn btn-sn btn-primary" >Editar</a>
-                <a href="" class="btn btn-sn btn-danger" >Eliminar</a>
+                <form action="{{ url('especialidades/'.$especialidad->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <a href="{{ url('/especialidades/'.$especialidad->id.'/edit')}}" class="btn btn-sn btn-primary" >Editar</a>
+                    <button type="submit" class="btn btn-sn btn-danger">Eliminar</button>
+                </form>
             </td>
             </tr>
             @endforeach
