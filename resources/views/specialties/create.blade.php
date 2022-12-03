@@ -17,16 +17,28 @@
     </div>
 
     <div class="card-body">
+
+        @if ($errors->any())
+
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Por Favor!!! </strong>{{$error}}
+        </div>
+        @endforeach
+
+        @endif
+
         <form action="{{ url('/especialidades')}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name" class="form-control" value="{{ old('name')}}" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <input type="text" name="description" class="form-control">
+                <input type="text" name="description" class="form-control" value={{ old('description')}}>
             </div>
             <button type="submit" class="btn btn-sm btn-primary">Añadir</button>
         </form>
