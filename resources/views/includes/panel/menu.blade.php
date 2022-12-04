@@ -1,26 +1,61 @@
-<h6 class="navbar-heading text-muted">Gestión</h6>
-<ul class="navbar-nav">
-    <li class="nav-item  active ">
-      <a class="nav-link  active " href="#">
-        <i class="ni ni-tv-2 text-danger"></i> Dashboard
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="{{ url('/especialidades')}}">
-        <i class="ni ni-briefcase-24 text-blue"></i> Especialidades
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="/medicos">
-        <i class="fas fa-stethoscope text-info"></i> Médicos
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link " href="/pacientes">
-        <i class="fas fa-bed text-warning"></i> Pacientes
-      </a>
-    </li>
+<h6 class="navbar-heading text-muted">
+    @if (auth()->user()->role == 'admin')
+    Gestión
+    @else
+    Menú
+    @endif
+</h6>
 
+<ul class="navbar-nav">
+        <li class="nav-item active ">
+        @if (auth()->user()->role == 'admin')
+        <a class="nav-link active " href="/home">
+            <i class="ni ni-tv-2 text-danger"></i> Dashboard
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link " href="{{ url('/especialidades')}}">
+            <i class="ni ni-briefcase-24 text-blue"></i> Especialidades
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link " href="/medicos">
+            <i class="fas fa-stethoscope text-info"></i> Médicos
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link " href="/pacientes">
+            <i class="fas fa-bed text-warning"></i> Pacientes
+        </a>
+        </li>
+    @elseif (auth()->user()->role == 'doctor')
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+            <i class="ni ni-calendar-grid-58 text-primary"></i> Gestionar Horarios
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+            <i class="fas fa-clock text-info"></i> Mis Citas
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+            <i class="fas fa-bed text-danger"></i> Mis Pacientes
+            </a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+            <i class="ni ni-calendar-grid-58 text-primary"></i> Reservar Citas
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+            <i class="fas fa-clock text-info"></i> Mis Citas
+            </a>
+        </li>
+    @endif
     <li class="nav-item">
       <a class="nav-link" href="{{ route('logout')}}"
       onclick="event.preventDefault(); document.getElementById('formLogout').submit();"
@@ -32,6 +67,8 @@
     </form>
     </li>
   </ul>
+
+  @if (auth()->user()->role == 'admin')
   <!-- Divider -->
   <hr class="my-3">
   <!-- Heading -->
@@ -49,3 +86,4 @@
       </a>
     </li>
   </ul>
+  @endif
