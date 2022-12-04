@@ -1,3 +1,6 @@
+<?php
+    use Illuminate\Support\Str;
+?>
 @extends('layouts.panel')
 
 @section('content')
@@ -27,7 +30,7 @@
         @endforeach
         @endif
 
-        <form action="{{ url('/especialidades')}}" method="POST">
+        <form action="{{ url('/medicos')}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -36,7 +39,7 @@
 
             <div class="form-group">
                 <label for="email">Correo</label>
-                <input type="text" name="email" class="form-control" value={{ old('email')}}>
+                <input type="text" name="email" class="form-control" value="{{ old('email')}}" >
             </div>
 
             <div class="form-group">
@@ -52,6 +55,11 @@
             <div class="form-group">
                 <label for="phone">Teléfono</label>
                 <input type="text" name="phone" class="form-control" value={{ old('phone')}}>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="text" name="password" class="form-control" value={{ old('password', Str::random(10))}}>
             </div>
             <button type="submit" class="btn btn-sm btn-primary">Añadir</button>
         </form>

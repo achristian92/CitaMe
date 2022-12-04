@@ -36,7 +36,36 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules =
+        [
+            'name' => 'required|min:4',
+            'email' => 'required|email',
+            'identity_card' => 'required',
+            'address' => 'nullable|min:6',
+            'phone' => 'required'
+        ];
+        $messages =
+        [
+            'name.required' => 'El campo Nombre es obligatorio',
+            'name.min' => 'Nombre debe contener al menos 4 carateres',
+            'email.requited' => 'EL Correo no debe estar vacio',
+            'email.email' => 'La Direccion de Correo es Invalida',
+            'identity_card.required' => 'La cedula es requerida',
+            'address.min' => 'La direcion debe contener al menos 6 caracteres'
+        ];
+
+        $this->validate($request,$rules,$messages);
+
+        User::create
+        (
+            $request->only('name','email','identity_card','address','phone')
+            + [
+                'role' => 'doctor',
+                'password' => 'bcrypt'($request->input('password'))
+              ]
+        );
+        $notification = 'Medico creado Correctamente';
+        return redirect('/medicos')->with(compact('notification'));
     }
 
     /**
