@@ -30,35 +30,37 @@ use Illuminate\Support\Str;
         @endforeach
         @endif
 
-        <form action="{{ url('/pacientes')}}" method="POST">
+        <form action="{{ url('/pacientes/'.$patient->id)}}" method="POST">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name')}}" required>
+                <input type="text" name="name" class="form-control" value="{{ old('name',$patient->name)}}" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Correo</label>
-                <input type="text" name="email" class="form-control" value={{ old('email')}}>
+                <input type="text" name="email" class="form-control" value={{ old('email',$patient->email)}}>
             </div>
 
             <div class="form-group">
                 <label for="identity_card">Cédula</label>
-                <input type="text" name="identity_card" class="form-control" value={{ old('identity_card')}}>
+                <input type="text" name="identity_card" class="form-control" value={{ old('identity_card',$patient->identity_card)}}>
             </div>
 
             <div class="form-group">
                 <label for="address">Dirección</label>
-                <input type="text" name="address" class="form-control" value={{ old('address')}}>
+                <input type="text" name="address" class="form-control" value={{ old('address',$patient->address)}}>
             </div>
 
             <div class="form-group">
                 <label for="phone">Teléfono</label>
-                <input type="text" name="phone" class="form-control" value={{ old('phone')}}>
+                <input type="text" name="phone" class="form-control" value={{ old('phone',$patient->phone)}}>
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="text" name="password" class="form-control" value="{{ old('password', Str::random(10)) }}">
+                <input type="text" name="password" class="form-control">
+                <small class="text-warning">Solo llene el campo si desea cambiar la contraseña</small>
             </div>
             <button type="submit" class="btn btn-sm btn-primary">Añadir</button>
         </form>
