@@ -52,8 +52,8 @@
               <td>
                 {{$doctor -> phone}}
               </td>
+              
               <td>
-
                 <form action="{{ url('/medicos/'.$doctor->id) }}" method="POST">
                 @csrf
                   @method('DELETE')

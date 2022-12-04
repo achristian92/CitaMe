@@ -28,6 +28,8 @@
             <th scope="col">Nombre</th>
             <th scope="col">Correo</th>
             <th scope="col">Cédula</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
@@ -43,6 +45,12 @@
             </td>
             <td>
                 {{ $patient->identity_card}}
+              </td>
+              <td>
+                {{$patient -> address}}
+              </td>
+              <td>
+                {{$patient -> phone}}
               </td>
             <td>
                 <form action="{{ url('pacientes/'.$patient->id)}}" method="POST">
