@@ -28,30 +28,40 @@
             <th scope="col">Nombre</th>
             <th scope="col">Correo</th>
             <th scope="col">Cédula</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
 
-            @foreach ( $doctors as $doctor )
-          <tr>
-            <th scope="row">
-              {{ $doctor->name}}
-            </th>
-            <td>
-              {{ $doctor->email}}
-            </td>
-            <td>
-                {{ $doctor->identity_card}}
+            @foreach($doctors as $doctor)
+            <tr>
+              <th scope="row">
+                {{$doctor -> name}}
+              </th>
+              <td>
+                {{$doctor -> email}}
               </td>
-            <td>
-                <form action="{{ url('medicos/'.$doctor->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <a href="{{ url('/medicos/'.$doctor->id.'/edit')}}" class="btn btn-sn btn-primary">Editar</a>
-                    <button type="submit" class="btn btn-sn btn-danger">Eliminar</button>
+              <td>
+                {{$doctor -> identity_card}}
+              </td>
+              <td>
+                {{$doctor -> address}}
+              </td>
+              <td>
+                {{$doctor -> phone}}
+              </td>
+              <td>
+
+                <form action="{{ url('/medicos/'.$doctor->id) }}" method="POST">
+                @csrf
+                  @method('DELETE')
+                  <a href="{{url('/medicos/'.$doctor->id.'/edit') }}" class="btn btn-sm btn-primary">Editar</a>
+                  <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                 </form>
-            </td>
+
+              </td>
             </tr>
             @endforeach
 
