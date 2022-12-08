@@ -5,13 +5,25 @@ namespace App\Http\Controllers\Doctor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Horarios;
+use Carbon\Carbon;
 
 class HorarioController extends Controller
 {
     public function edit()
     {
         $days = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
-        return view('horario', compact('days'));
+        $horarios = Horarios::where('user_id', auth()->id())->get();
+
+        $horarios->map(function($horarios){
+            $horarios->morning_start = (new Carbon($horarios->morning_start))->format('g:i A');
+            $horarios->morning_end = (new Carbon($horarios->morning_end))->format('g:i A');
+            $horarios->afternoon_start = (new Carbon($horarios->afternoon_start))->format('g:i A');
+            $horarios->afternoon_end = (new Carbon($horarios->aafternoon_end))->format('g:i A');
+
+        });
+
+        return view('horario', compact('days', 'horarios'));
+
 
     }
 
