@@ -67,7 +67,7 @@
 
                     <td>
                         <div class="row">
-                            <div class="col"></div>
+                            <div class="col">
                                 <select class="form-control" name="afternoon_start[]">
                                     @for ($i=2;$i<=11;$i++)
                                     <option value="{{ $i+12}}:00">{{ $i}}:00 PM</option>
@@ -78,14 +78,13 @@
                             <div class="col">
                                 <select class="form-control" name="afternoon_end[]">
                                     @for ($i=2;$i<=11;$i++)
-                                    <option value="{{ $i+12}}:00">{{ $i}}:00 PM</option>
-                                    <option value="{{ $i+12}}:30">{{ $i}}:30 PM</option>
+                                    <option value="{{ $i+12}}:00">{{ $i}}:00 AM</option>
+                                    <option value="{{ $i+12}}:30">{{ $i}}:30 AM</option>
                                     @endfor
                                 </select>
                             </div>
                         </div>
                     </td>
-                </tr>
                 @endforeach
 
             </tbody>
