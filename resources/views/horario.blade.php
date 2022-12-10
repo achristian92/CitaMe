@@ -63,16 +63,16 @@
                             <div class="col">
                                 <select class="form-control" name="morning_start[]">
                                     @for ($i=8;$i<=11;$i++)
-                                    <option value="{{ $i}}:00" @if($i.':00 AM' == $horario->morning_start) selected @endif>{{ $i}}:00 AM</option>
-                                    <option value="{{ $i}}:30" @if($i.':30 AM' == $horario->morning_start) selected @endif>{{ $i}}:30 AM</option>
+                                    <option value="{{ ($i<10 ? '0' : '') . $i}}:00" @if($i.':00 AM' == $horario->morning_start) selected @endif>{{ $i}}:00 AM</option>
+                                    <option value="{{ ($i<10 ? '0' : '') . $i}}:30" @if($i.':30 AM' == $horario->morning_start) selected @endif>{{ $i}}:30 AM</option>
                                     @endfor
                                 </select>
                             </div>
                             <div class="col">
                                 <select class="form-control" name="morning_end[]">
                                     @for ($i=8;$i<=11;$i++)
-                                    <option value="{{ $i}}:00" @if($i.':00 AM' == $horario->morning_end) selected @endif>{{ $i}}:00 AM</option>
-                                    <option value="{{ $i}}:30" @if($i.':30 AM' == $horario->morning_end) selected @endif>{{ $i}}:30 AM</option>
+                                    <option value="{{ ($i<10 ? '0' : '') . $i}}:00" @if($i.':00 AM' == $horario->morning_end) selected @endif>{{ $i}}:00 AM</option>
+                                    <option value="{{ ($i<10 ? '0' : '') . $i}}:30" @if($i.':30 AM' == $horario->morning_end) selected @endif>{{ $i}}:30 AM</option>
                                     @endfor
                                 </select>
                             </div>
