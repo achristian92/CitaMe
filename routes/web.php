@@ -36,11 +36,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('pacientes','App\Http\Controllers\admin\PatientController');
 });
 
+
+//Rutas de Medicos
 Route::middleware(['auth', 'doctor'])->group(function ()
 {
     Route::get('/horario', [App\Http\Controllers\doctor\HorarioController::class, 'edit']);
     Route::post('/horario', [App\Http\Controllers\doctor\HorarioController::class, 'store']);
 });
+
+//Rutas de Pacientes
+Route::get('/reservarcitas/create', [App\Http\Controllers\AppointmentController::class, 'create']);
+Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
