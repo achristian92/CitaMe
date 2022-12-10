@@ -22,8 +22,9 @@ class CreateHorariosTable extends Migration
             $table->time('afternoon_start');
             $table->time('afternoon_end');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->
+            on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
