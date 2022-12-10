@@ -11,6 +11,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\DoctorController' => $baseDir . '/app/Http/Controllers/Admin/DoctorController.php',
     'App\\Http\\Controllers\\Admin\\PatientController' => $baseDir . '/app/Http/Controllers/Admin/PatientController.php',
     'App\\Http\\Controllers\\Admin\\SpecialtyController' => $baseDir . '/app/Http/Controllers/Admin/SpecialtyController.php',
+    'App\\Http\\Controllers\\AppointmentController' => $baseDir . '/app/Http/Controllers/AppointmentController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

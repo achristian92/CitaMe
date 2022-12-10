@@ -75,4 +75,24 @@ use Illuminate\Support\Str;
 
           <script src="{{ asset('js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
+         <script>
+            let $doctor;
+            $(function(){
+              const $specialty = $('#specialty');
+              $doctor =$('#doctor');
+
+              $specialty.change(() =>{
+                const specialtyId = $specialty.val();
+                const url = `/especialidades/${specialtyId}/medicos`;
+                $.getJSON(url, onDoctorsLoaded)
+              });
+            });
+            function onDoctorsLoaded(doctors){
+              let htmlOptions = '';
+              doctors.forEach(doctor =>{
+                 htmlOptions += `<option value="${doctor.id}" >${doctor.name}</option>`
+              });
+              $doctor.html(htmlOptions);
+            }
+          </script>
           @endsection

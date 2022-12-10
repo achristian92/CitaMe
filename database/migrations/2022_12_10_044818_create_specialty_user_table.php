@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHorariosTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateHorariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('horarios', function (Blueprint $table) {
+        Schema::create('specialty_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedSmallInteger('day');
-            $table->boolean('active');
-            $table->time('morning_start');
-            $table->time('morning_end');
-            $table->time('afternoon_start');
-            $table->time('afternoon_end');
 
+            //Doctor
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->
             on('users')->onDelete('cascade')->onUpdate('cascade');
+            //Specialty
+            $table->bigInteger('specialty_id')->unsigned();
+            $table->foreign('specialty_id')->references('id')->
+            on('specialties')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateHorariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('horarios');
+        Schema::dropIfExists('specialty_user');
     }
-}
+};
