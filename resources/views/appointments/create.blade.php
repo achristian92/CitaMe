@@ -75,7 +75,7 @@ use Illuminate\Support\Str;
 
           <script src="{{ asset('js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
-         <script></script>
+         <script>
             let $doctor;
             $(function(){
               const $specialty = $('#specialty');
