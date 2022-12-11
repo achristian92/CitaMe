@@ -29,10 +29,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/especialidades/{specialty}', [App\Http\Controllers\admin\SpecialtyController::class, 'update']);
     Route::delete('/especialidades/{specialty}', [App\Http\Controllers\admin\SpecialtyController::class, 'destroy']);
 
-    //Rutas de Medicos
+    //Ruta de Medicos
     Route::resource('medicos','App\Http\Controllers\admin\DoctorController');
 
-    //Rutas de Pacientes
+    //Ruta de Pacientes
     Route::resource('pacientes','App\Http\Controllers\admin\PatientController');
 });
 
@@ -45,9 +45,17 @@ Route::middleware(['auth', 'doctor'])->group(function ()
 });
 
 //Rutas de Pacientes
-Route::get('/reservarcitas/create', [App\Http\Controllers\AppointmentController::class, 'create']);
-Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'store']);
+Route::middleware('auth')->group(function()
+{
+    Route::get('/reservarcitas/create', [App\Http\Controllers\AppointmentController::class, 'create']);
+    Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'store']);
+    //Json
+    Route::get('/especialidades/{specialty}/medicos', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);
+});
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 
