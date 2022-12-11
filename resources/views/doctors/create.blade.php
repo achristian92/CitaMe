@@ -46,12 +46,12 @@
 
             <div class="form-group">
                 <label for="specialties">Especialidades </label>
-                <select name="specialties[]" id="specialties" class="form-control selectpicker"
-                data-style="btn-primary" title="Seleccionar Especialidades" multiple required>
-              @foreach($specialties as $especialidad)
-              <option value="{{$especialidad->id}}">{{ $especialidad->name }}</option>
-              @endforeach
-              </select>
+                  <select name="specialties[]" id="specialties" class="form-control selectpicker"
+                    data-style="btn-primary" title="Seleccionar Especialidades" multiple required>
+                      @foreach($specialties as $especialidad)
+                        <option value="{{$especialidad->id}}">{{ $especialidad->name }}</option>
+                     @endforeach
+                  </select>
               </div>
 
             <div class="form-group">

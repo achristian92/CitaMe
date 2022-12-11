@@ -59,7 +59,7 @@ class DoctorController extends Controller
 
         $this->validate($request,$rules,$messages);
 
-        User::create
+        $user = User::create
         (
             $request->only('name','email','identity_card','address','phone')
             + [
@@ -67,6 +67,8 @@ class DoctorController extends Controller
                 'password' => 'bcrypt'($request->input('password'))
               ]
         );
+        $user -> specialties()->attach($request->input('specialties'));
+
         $notification = 'Medico creado Correctamente';
         return redirect('/medicos')->with(compact('notification'));
     }
@@ -93,7 +95,11 @@ class DoctorController extends Controller
     {
         $doctor = User::doctors()->findOrFail($id);
 
-        return view('doctors.edit', compact('doctor'));
+        $specialties = Specialty::all();
+
+        $specialty_ids = $doctor->specialties()->pluck('specialties.id');
+
+        return view('doctors.edit', compact('doctor', 'specialties','specialty_ids'));
     }
 
     /**
@@ -130,9 +136,10 @@ class DoctorController extends Controller
 
         if ($password)
             $data['password'] = bcrypt($password);
-        $user->fill($data);
 
+        $user->fill($data);
         $user->save();
+        $user->specialties()->sync($request->input('specialties'));
 
         $NombreMedico = $user->name;
         $notification = 'Los datos del medico '.$NombreMedico.' se han cambiado correctamente';

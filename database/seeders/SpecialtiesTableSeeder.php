@@ -20,7 +20,7 @@ class SpecialtiesTableSeeder extends Seeder
             'Pediatra',
             'Cardologia',
             'Urologia',
-            'Medicina forense',
+            'Medicina Forense',
             'Dermatologia'
 
         ];
