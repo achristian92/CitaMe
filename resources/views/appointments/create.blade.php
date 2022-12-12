@@ -40,9 +40,7 @@ use Illuminate\Support\Str;
                     </div>
                     <div class="form-group">
                         <label for="doctor">Medico</label>
-                        <select name="doctor_id" id="doctor" class="form-control">
-
-                        </select>
+                        <select name="doctor_id" id="doctor" class="form-control"></select>
                     </div>
                     <div class="form-group">
                         <label for="cedula">Fecha</label>

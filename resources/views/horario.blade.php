@@ -92,8 +92,8 @@
                             <div class="col">
                                 <select class="form-control" name="afternoon_end[]">
                                     @for ($i=2;$i<=11;$i++)
-                                    <option value="{{ $i+12}}:00" @if($i.':00 PM' == $horario->afternoon_end) selected @endif>{{ $i}}:00 AM</option>
-                                    <option value="{{ $i+12}}:30" @if($i.':30 PM' == $horario->afternoon_end) selected @endif>{{ $i}}:30 AM</option>
+                                    <option value="{{ $i+12}}:00" @if($i.':00 PM' == $horario->afternoon_end) selected @endif>{{ $i}}:00 PM</option>
+                                    <option value="{{ $i+12}}:30" @if($i.':30 PM' == $horario->afternoon_end) selected @endif>{{ $i}}:30 PM</option>
                                     @endfor
                                 </select>
                             </div>
@@ -102,7 +102,6 @@
                 </tr>
                 @endforeach
             </tbody>
-
           </table>
         </div>
       </div>

@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function()
     Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'store']);
     //Json
     Route::get('/especialidades/{specialty}/medicos', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);
+    Route::get('/horario/horas', [App\Http\Controllers\Api\HorarioController::class, 'hours']);
 });
 
 
