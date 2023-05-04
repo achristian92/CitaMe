@@ -9,26 +9,22 @@ use Carbon\Carbon;
 
 class HorarioController extends Controller
 {
-    private $days = ['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+    private $days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 
     public function edit()
     {
         $horarios = Horarios::where('user_id', auth()->id())->get();
 
-        if (count($horarios) > 0)
-        {
-            $horarios->map(function($horarios){
+        if (count($horarios) > 0) {
+            $horarios->map(function ($horarios) {
                 $horarios->morning_start = (new Carbon($horarios->morning_start))->format('g:i A');
                 $horarios->morning_end = (new Carbon($horarios->morning_end))->format('g:i A');
                 $horarios->afternoon_start = (new Carbon($horarios->afternoon_start))->format('g:i A');
-                $horarios->afternoon_end = (new Carbon($horarios->aafternoon_end))->format('g:i A');
-
+                $horarios->afternoon_end = (new Carbon($horarios->afternoon_end))->format('g:i A');
             });
-        }else
-        {
+        } else {
             $horarios = collect();
-            for ($i=0; $i<7; $i++)
-            {
+            for ($i = 0; $i < 7; $i++) {
                 $horarios->push(new Horarios());
             }
         }
@@ -49,16 +45,13 @@ class HorarioController extends Controller
 
         $errors = [];
 
-        for($i=0; $i<7; $i++)
-        {
-            if($morning_start[$i] > $morning_end[$i])
-            {
-                $errors[] = 'Inconsistencia en el intérvalo de las horas del turno de la mañana del dia'. $this->days[$i].'.';
+        for ($i = 0; $i < 7; $i++) {
+            if ($morning_start[$i] > $morning_end[$i]) {
+                $errors[] = 'Inconsistencia en el intérvalo de las horas del turno de la mañana del dia' . $this->days[$i] . '.';
             }
 
-            if($afternoon_start[$i] > $afternoon_end[$i])
-            {
-                $errors[] = 'Inconsistencia en el intérvalo de las horas del turno de la tarde del dia'. $this->days[$i].'.';
+            if ($afternoon_start[$i] > $afternoon_end[$i]) {
+                $errors[] = 'Inconsistencia en el intérvalo de las horas del turno de la tarde del dia' . $this->days[$i] . '.';
             }
 
             Horarios::updateOrCreate(
@@ -77,13 +70,12 @@ class HorarioController extends Controller
             );
         }
 
+        if (count($errors) > 0)
+            return back()->with(compact('errors'));
 
-            if(count($errors) > 0)
-                return back()->with(compact('errors'));
-
-            else
+        else
 
             $notification = 'Los cambios se han guardado correctamente.';
-            return back()->with(compact('notification'));
-        }
+        return back()->with(compact('notification'));
+    }
 }

@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function create() {
+    public function create()
+    {
         $specialties = Specialty::all();
 
         return view('appointments.create', compact('specialties'));
     }
 
-    public function store() {
-
-
+    public function store()
+    {
     }
 }
