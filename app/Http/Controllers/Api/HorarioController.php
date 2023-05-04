@@ -39,14 +39,14 @@ class HorarioController extends Controller
         }
 
         $morningIntervalos = $this->getIntervalos(
-                $horario->morning_start,
-                $horario->morning_end
-            );
+            $horario->morning_start,
+            $horario->morning_end
+        );
 
         $afternoonIntervalos = $this->getIntervalos(
-                $horario->afternoon_start,
-                $horario->afternoon_end
-            );
+            $horario->afternoon_start,
+            $horario->afternoon_end
+        );
 
         $data = [];
         $data['morning'] = $morningIntervalos;
