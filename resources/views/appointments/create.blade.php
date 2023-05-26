@@ -76,11 +76,12 @@ use Illuminate\Support\Str;
                                 <h4 class="m-3" id="titleMorning"></h4>
                                 <div id="hoursMorning">
                                     @if ($intervals)
+                                    <h4 class="m-3">En la Mañana</h4>
                                         @foreach ($intervals['morning'] as $key => $interval)
                                         <div class="custom-control custom-radio mb-3">
                                             <input type="radio" id="intervalMorning{{$key}}" name="scheduled_time" value="{{$interval['start']}}" class="custom-control-input" >
                                             <label class="custom-control-label" for="intervalMorning{{$key}}">{{$interval['start']}} - {{$interval['end']}}</label>
-                                         </div>
+                                        </div>
                                         @endforeach
                                     @else
                                         <mark>
@@ -96,11 +97,12 @@ use Illuminate\Support\Str;
                                 <h4 class="m-3" id="titleAfternoon"></h4>
                                 <div id="hoursAfternoon">
                                     @if ($intervals)
+                                    <h4 class="m-3">En la Tarde</h4>
                                     @foreach ($intervals['afternoon'] as $key => $interval)
                                     <div class="custom-control custom-radio mb-3">
                                         <input type="radio" id="intervalAfternoon{{$key}}" name="scheduled_time" value="{{$interval['start']}}" class="custom-control-input" >
                                         <label class="custom-control-label" for="intervalAfternoon{{$key}}">{{$interval['start']}} - {{$interval['end']}}</label>
-                                     </div>
+                                    </div>
                                     @endforeach
                                     @endif
                                 </div>
