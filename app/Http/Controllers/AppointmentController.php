@@ -13,7 +13,16 @@ class AppointmentController extends Controller
     {
         $specialties = Specialty::all();
 
-        return view('appointments.create', compact('specialties'));
+        $specialtyId = old('specialty_id');
+        if ($specialtyId)
+        {
+            $specialty = Specialty::find($specialtyId);
+            $doctors = $specialty->users;
+        } else {
+            $doctors = collect();
+        }
+
+        return view('appointments.create', compact('specialties', 'doctors'));
     }
 
     public function store(Request $request)
