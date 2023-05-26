@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -14,7 +16,43 @@ class AppointmentController extends Controller
         return view('appointments.create', compact('specialties'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
+
+        $rules = [
+            'scheduled_time' => 'required',
+            'type' => 'required',
+            'description' => 'required',
+            'doctor_id' => 'exists:users,id',
+            'specialty_id'=> 'exists:specialties,id'
+        ];
+
+        $messages = [
+            'scheduled_time.required' => 'Debe Seleccionar una Hora Valida para su Cita.',
+            'type.required' => 'Debe Seleccionar el Tipo de Consulta.',
+            'description.required' => 'Debe poner sus sintomas.'
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        $data = $request->only([
+            'scheduled_time',
+            'scheduled_date',
+            'type',
+            'description',
+            'doctor_id',
+            'specialty_id'
+        ]);
+
+        $data['patient_id'] = auth()->id();
+
+        $carbonTime = Carbon::createFromFormat('g:i A', $data['scheduled_time']);
+        $data['scheduled_time'] = $carbonTime->format('H:i:s');
+
+        Appointment::create($data);
+
+        $notification = 'La Cita se ha Realizado Exitosamente.';
+
+        return back()->with(compact('notification'));
     }
 }
