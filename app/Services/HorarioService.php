@@ -17,6 +17,16 @@
             return $day;
         }
 
+        public function isAvailableInterval($date, $doctorId, Carbon $start)
+        {
+            $exists = Appointment::where('doctor_id', $doctorId)
+            ->where('scheduled_date', $date)
+            ->where('scheduled_time', $start->format('H:i:s'))
+            ->exists();
+
+            return !$exists;
+        }
+
         public function getAvailableIntervals($date, $doctorId)
         {
             $horario = Horarios::where('active', true)
@@ -63,15 +73,12 @@
                 $intervalo = [];
                 $intervalo['start'] = $start->format('g:i A');
 
-                $exists = Appointment::where('doctor_id', $doctorId)
-                ->where('scheduled_date', $date)
-                ->where('scheduled_time', $start->format('H:i:s'))
-                ->exists();
+                $available = $this->isAvailableInterval($date, $doctorId, $start);
 
                 $start->addMinutes(30);
                 $intervalo['end'] = $start->format('g:i A');
 
-                if (!$exists) {
+                if ($available) {
                     $intervalos[] = $intervalo;
                 }
 
