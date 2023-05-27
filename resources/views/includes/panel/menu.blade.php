@@ -28,6 +28,11 @@
             <i class="fas fa-bed text-warning"></i> Pacientes
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link " href="/miscitas">
+            <i class="fas fa-clock text-info"></i> Citas Médicas
+        </a>
+    </li>
 @elseif (auth()->user()->role == 'doctor')
     <li class="nav-item">
         <a class="nav-link " href="/horario">

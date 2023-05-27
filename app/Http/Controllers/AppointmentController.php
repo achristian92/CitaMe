@@ -17,7 +17,16 @@ class AppointmentController extends Controller
     {
 
         $role = auth()->user()->role;
-        if ($role == 'doctor'){
+
+        if ($role == 'admin'){
+        //Administrador
+        $confirmedAppointments = Appointment::all()
+            ->where('status', 'Confirmada');
+        $pendingAppointments = Appointment::all()
+            ->where('status', 'Reservada');
+        $oldAppointments = Appointment::all()
+            ->whereIn('status', ['Atendida', 'Cancelada']);
+        }elseif ($role == 'doctor'){
         //Medicos
         $confirmedAppointments = Appointment::all()
             ->where('status', 'Confirmada')

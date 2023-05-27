@@ -23,19 +23,28 @@
                 </li>
                 <li class="list-group-item">
                     <i class="fas fa-clock"></i>
-                    <strong>Hora de Atención:</strong> {{ $appointments->scheduled_time }}
+                    <strong>Hora de Atención:</strong> {{ $appointments->scheduled_time_12 }}
                 </li>
                 @if ($role == 'paciente')
-                <li class="list-group-item">
-                    <i class="fas fa-user-md"></i>
-                    <strong>Doctor:</strong> {{ $appointments->doctor->name }}
-                </li>
-            @elseif ($role == 'doctor')
-                <li class="list-group-item">
-                    <i class="fas fa-user"></i>
-                    <strong>Paciente:</strong> {{ $appointments->patient->name }}
-                </li>
-            @endif
+                    <li class="list-group-item">
+                        <i class="fas fa-user-md"></i>
+                        <strong>Doctor:</strong> {{ $appointments->doctor->name }}
+                    </li>
+                @elseif ($role == 'doctor')
+                    <li class="list-group-item">
+                        <i class="fas fa-user"></i>
+                        <strong>Paciente:</strong> {{ $appointments->patient->name }}
+                    </li>
+                @elseif ($role == 'admin')
+                    <li class="list-group-item">
+                        <i class="fas fa-user-md"></i>
+                        <strong>Doctor:</strong> {{ $appointments->doctor->name }}
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-user"></i>
+                        <strong>Paciente:</strong> {{ $appointments->patient->name }}
+                    </li>
+                @endif
 
                 <li class="list-group-item">
                     <i class="fas fa-stethoscope"></i>
@@ -59,6 +68,8 @@
                     <strong>Síntomas:</strong> {{ $appointments->description }}
                 </li>
             </ul>
+
+            @if ($appointments->status == 'Cancelada')
             <div class="alert bg-light text-dark mt-4">
                 <h3 class="text-primary"><i class="fas fa-exclamation-circle"></i> Detalles de la Cancelación</h3>
                 @if ($appointments->cancellation)
@@ -83,6 +94,7 @@
                     </ul>
                 @endif
             </div>
+            @endif
         </div>
     </div>
 @endsection

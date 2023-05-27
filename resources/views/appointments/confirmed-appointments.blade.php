@@ -49,6 +49,9 @@
                         {{ $cita->status }}
                     </td>
                     <td>
+                        @if ($role == 'admin')
+                            <a href="{{ url('/miscitas/'.$cita->id)}}" class="btn btn-sn btn-info" title="Ver Cita">Ver</a>
+                        @endif
                         <a href="{{ url('/miscitas/'.$cita->id.'/cancel')}}" class="btn btn-sn btn-danger" title="Cancelar Cita">Cancelar</a>
                     </td>
                 </tr>

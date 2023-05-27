@@ -45,16 +45,23 @@
                         {{ $cita->type }}
                     </td>
                     <td>
-                        @if ($role == 'doctor')
-                        <form action="{{ url('miscitas/' . $cita->id. '/confirm' ) }}" method="POST" class="d-inline-block">
-                            @csrf
-                            <button type="submit" class="btn btn-sn btn-success" title="Confirmar Cita">
-                                <i class="ni ni-check-bold"></i>
-                            </button>
-                        </form>
+                        @if ($role == 'admin')
+                            <a href="{{ url('/miscitas/' . $cita->id) }}" class="btn btn-sn btn-info" title="Ver Cita">
+                                <i class="ni far fa-eye"></i>
+                            </a>
+                        @endif
+                        @if ($role == 'doctor' || $role == 'admin')
+                            <form action="{{ url('miscitas/' . $cita->id . '/confirm') }}" method="POST"
+                                class="d-inline-block">
+                                @csrf
+                                <button type="submit" class="btn btn-sn btn-success" title="Confirmar Cita">
+                                    <i class="ni ni-check-bold"></i>
+                                </button>
+                            </form>
                         @endif
 
-                        <form action="{{ url('miscitas/' . $cita->id. '/cancel' ) }}" method="POST" class="d-inline-block">
+                        <form action="{{ url('miscitas/' . $cita->id . '/cancel') }}" method="POST"
+                            class="d-inline-block">
                             @csrf
                             <button type="submit" class="btn btn-sn btn-danger" title="Cancelar Cita">
                                 <i class="ni ni-fat-delete"></i>

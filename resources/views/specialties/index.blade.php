@@ -1,4 +1,4 @@
-a@extends('layouts.panel')
+@extends('layouts.panel')
 
 @section('content')
     <div class="card shadow">
