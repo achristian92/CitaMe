@@ -5,7 +5,7 @@
             <tr>
                 <th scope="col">Descripción</th>
                 <th scope="col">Especialidad</th>
-                @if ($role == 'patient')
+                @if ($role == 'paciente')
                     <th scope="col">Médico</th>
                 @elseif ($role == 'doctor')
                     <th scope="col">Paciente</th>
@@ -27,7 +27,7 @@
                     <td>
                         {{ $cita->specialty->name }}
                     </td>
-                    @if ($role == 'patient')
+                    @if ($role == 'paciente')
                         <td>
                             {{ $cita->doctor->name }}
                         </td>

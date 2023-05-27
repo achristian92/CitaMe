@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function()
     Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
     Route::get('/miscitas/{appointments}', [App\Http\Controllers\AppointmentController::class, 'show']);
     Route::post('/miscitas/{appointments}/cancel', [App\Http\Controllers\AppointmentController::class, 'cancel']);
+    Route::post('/miscitas/{appointments}/confirm', [App\Http\Controllers\AppointmentController::class, 'confirm']);
+
     Route::get('/miscitas/{appointments}/cancel', [App\Http\Controllers\AppointmentController::class, 'formCancel']);
     //Json
     Route::get('/especialidades/{specialty}/medicos', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);

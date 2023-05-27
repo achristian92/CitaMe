@@ -20,11 +20,24 @@
                     {{ session('notification') }}
                 </div>
             @endif
+            @if ($role == 'paciente')
+                <p>Estás a punto de cancelar tu cita reservada con el Médico <b>{{ $appointments->doctor->name }}</b>
+                    (Especialidad
+                    <b>{{ $appointments->specialty->name }}</b> ) para el día {{ $appointments->scheduled_date }}
+                </p>
+            @elseif($role == 'doctor')
+                <p>Estás a punto de cancelar tu cita con el Paciente <b>{{ $appointments->patient->name }}</b> (Especialidad
+                    <b>{{ $appointments->specialty->name }}</b> ) para el día {{ $appointments->scheduled_date }}
+                    y la hora {{ $appointments->scheduled_time_12 }}
+                </p>
+            @elseif ($role == 'admin')
+                <p>Estás a punto de cancelar la cita reservada por el Paciente <b>{{ $appointments->patient->name }}</b> con
+                    el Médico <b>{{ $appointments->doctor->name }}</b> (Especialidad
+                    <b>{{ $appointments->specialty->name }}</b> ) para el día {{ $appointments->scheduled_date }}
+                </p>
+            @endif
 
-            <p>Se cancelará tu cita reservada con el Médico <b>{{ $appointments->doctor->name }}</b> (Especialidad
-                <b>{{ $appointments->specialty->name }}</b> ) para el día {{ $appointments->scheduled_date }}</p>
-
-            <form action="{{ url('/miscitas/'.$appointments->id.'/cancel')}}" method="POST">
+            <form action="{{ url('/miscitas/' . $appointments->id . '/cancel') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="justification">Especifique los Motivos de la Cancelación*</label>
