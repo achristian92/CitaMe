@@ -39,4 +39,10 @@ class Appointment extends Model
     {
         return (new Carbon($this->scheduled_time))->format('g:i A');
     }
+
+    public function cancellation()
+    {
+        return $this->hasOne(CancelledAppointment::class);
+    }
 }
+

@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Interfaces\\HorarioServiceInterface' => $baseDir . '/app/Interfaces/HorarioServiceInterface.php',
     'App\\Models\\Appointment' => $baseDir . '/app/Models/Appointment.php',
+    'App\\Models\\CancelledAppointment' => $baseDir . '/app/Models/CancelledAppointment.php',
     'App\\Models\\Horarios' => $baseDir . '/app/Models/Horarios.php',
     'App\\Models\\Specialty' => $baseDir . '/app/Models/Specialty.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
