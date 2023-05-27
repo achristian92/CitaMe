@@ -1,14 +1,11 @@
-a@extends('layouts.panel')
+@extends('layouts.panel')
 
 @section('content')
     <div class="card shadow">
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Pacientes</h3>
-                </div>
-                <div class="col text-right">
-                    <a href="{{ url('/pacientes/create') }}" class="btn btn-sm btn-primary">Crear Nueva</a>
+                    <h3 class="mb-0">Mis Citas</h3>
                 </div>
             </div>
         </div>
@@ -24,40 +21,46 @@ a@extends('layouts.panel')
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Cédula</th>
-                        <th scope="col">Dirección</th>
-                        <th scope="col">Teléfono</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Especialidad</th>
+                        <th scope="col">Médico</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($patients as $patient)
+                    @foreach ($appointments as $cita)
                         <tr>
                             <th scope="row">
-                                {{ $patient->name }}
+                                {{ $cita->description }}
                             </th>
                             <td>
-                                {{ $patient->email }}
+                                {{ $cita->specialty->name }}
                             </td>
                             <td>
-                                {{ $patient->identity_card }}
+                                {{ $cita->doctor->name }}
                             </td>
                             <td>
-                                {{ $patient->address }}
+                                {{ $cita->scheduled_date }}
                             </td>
                             <td>
-                                {{ $patient->phone }}
+                                {{ $cita->Scheduled_Time_12 }}
                             </td>
                             <td>
-                                <form action="{{ url('pacientes/' . $patient->id) }}" method="POST">
+                                {{ $cita->type }}
+                            </td>
+                            <td>
+                                {{ $cita->status }}
+                            </td>
+                            <td>
+                                <form action="{{ url('miscitas/' . $cita->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ url('/pacientes/' . $patient->id . '/edit') }}"
-                                        class="btn btn-sn btn-primary">Editar</a>
-                                    <button type="submit" class="btn btn-sn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-sn btn-danger" title="Cancelar Cita">Cancelar</button>
                                 </form>
                             </td>
                         </tr>
@@ -66,8 +69,8 @@ a@extends('layouts.panel')
                 </tbody>
             </table>
         </div>
-        <div class="card-body">
+{{--         <div class="card-body">
             {{ $patients->links() }}
-        </div>
+        </div> --}}
     </div>
 @endsection

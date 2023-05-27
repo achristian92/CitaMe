@@ -1,89 +1,88 @@
 <h6 class="navbar-heading text-muted">
     @if (auth()->user()->role == 'admin')
-    Gestión
+        Gestión
     @else
-    Menú
+        Menú
     @endif
 </h6>
 
 <ul class="navbar-nav">
-        <li class="nav-item active ">
+    <li class="nav-item active ">
         @if (auth()->user()->role == 'admin')
-        <a class="nav-link active " href="/home">
-            <i class="ni ni-tv-2 text-danger"></i> Dashboard
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link " href="{{ url('/especialidades')}}">
+            <a class="nav-link active " href="/home">
+                <i class="ni ni-tv-2 text-danger"></i> Dashboard
+            </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="{{ url('/especialidades') }}">
             <i class="ni ni-briefcase-24 text-blue"></i> Especialidades
         </a>
-        </li>
-        <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link " href="/medicos">
             <i class="fas fa-stethoscope text-info"></i> Médicos
         </a>
-        </li>
-        <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link " href="/pacientes">
             <i class="fas fa-bed text-warning"></i> Pacientes
         </a>
-        </li>
-    @elseif (auth()->user()->role == 'doctor')
-        <li class="nav-item">
-            <a class="nav-link " href="/horario">
+    </li>
+@elseif (auth()->user()->role == 'doctor')
+    <li class="nav-item">
+        <a class="nav-link " href="/horario">
             <i class="ni ni-calendar-grid-58 text-primary"></i> Gestionar Horarios
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#">
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="#">
             <i class="fas fa-clock text-info"></i> Mis Citas
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#">
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="#">
             <i class="fas fa-bed text-danger"></i> Mis Pacientes
-            </a>
-        </li>
-    @else
-        <li class="nav-item">
-            <a class="nav-link " href="/reservarcitas/create">
+        </a>
+    </li>
+@else
+    <li class="nav-item">
+        <a class="nav-link " href="/reservarcitas/create">
             <i class="ni ni-calendar-grid-58 text-primary"></i> Reservar Citas
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="#">
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="/miscitas">
             <i class="fas fa-clock text-info"></i> Mis Citas
-            </a>
-        </li>
+        </a>
+    </li>
     @endif
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('logout')}}"
-      onclick="event.preventDefault(); document.getElementById('formLogout').submit();"
-      >
-        <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
-      </a>
-    <form action="{{ route('logout')}}" method="POST" style="display: none;" id="formLogout">
-        @csrf
-    </form>
+        <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('formLogout').submit();">
+            <i class="fas fa-sign-in-alt"></i> Cerrar Sesión
+        </a>
+        <form action="{{ route('logout') }}" method="POST" style="display: none;" id="formLogout">
+            @csrf
+        </form>
     </li>
-  </ul>
+</ul>
 
-  @if (auth()->user()->role == 'admin')
-  <!-- Divider -->
-  <hr class="my-3">
-  <!-- Heading -->
-  <h6 class="navbar-heading text-muted">Reportes</h6>
-  <!-- Navigation -->
-  <ul class="navbar-nav mb-md-3">
-    <li class="nav-item">
-      <a class="nav-link" href="/mis citas">
-        <i class="ni ni-books text-default"></i> Citas
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="ni ni-chart-bar-32 text-warning"></i> Desempeño Medico
-      </a>
-    </li>
-  </ul>
-  @endif
+@if (auth()->user()->role == 'admin')
+    <!-- Divider -->
+    <hr class="my-3">
+    <!-- Heading -->
+    <h6 class="navbar-heading text-muted">Reportes</h6>
+    <!-- Navigation -->
+    <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+            <a class="nav-link" href="/mis citas">
+                <i class="ni ni-books text-default"></i> Citas
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="ni ni-chart-bar-32 text-warning"></i> Desempeño Medico
+            </a>
+        </li>
+    </ul>
+@endif

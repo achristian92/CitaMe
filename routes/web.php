@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function()
 {
     Route::get('/reservarcitas/create', [App\Http\Controllers\AppointmentController::class, 'create']);
     Route::post('/reservarcitas', [App\Http\Controllers\AppointmentController::class, 'store']);
-    Route::post('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
+    Route::get('/miscitas', [App\Http\Controllers\AppointmentController::class, 'index']);
     //Json
     Route::get('/especialidades/{specialty}/medicos', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors']);
     Route::get('/horario/horas', [App\Http\Controllers\Api\HorarioController::class, 'hours']);
