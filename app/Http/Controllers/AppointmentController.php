@@ -14,8 +14,19 @@ class AppointmentController extends Controller
 
     public function index()
     {
-        $appointments = Appointment::all();
-        return view('appointments.index', compact('appointments'));
+        $confirmedAppointments = Appointment::all()
+        ->where('status', 'Confirmada')
+        ->where('patient_id', auth()->id());
+
+        $pendingAppointments = Appointment::all()
+        ->where('status', 'Reservada')
+        ->where('patient_id', auth()->id());
+
+        $oldAppointments = Appointment::all()
+        ->whereIn('status', ['Atendida', 'Cancelada'])
+        ->where('patient_id', auth()->id());
+
+        return view('appointments.index', compact('confirmedAppointments', 'pendingAppointments', 'oldAppointments'));
     }
 
     public function create(HorarioServiceInterface $horarioServiceInterface)
