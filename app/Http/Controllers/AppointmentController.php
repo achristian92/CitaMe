@@ -15,6 +15,25 @@ class AppointmentController extends Controller
 
     public function index()
     {
+
+        $role = auth()->user()->role;
+        if ($role == 'doctor'){
+        //Medicos
+        $confirmedAppointments = Appointment::all()
+            ->where('status', 'Confirmada')
+            ->where('doctor_id', auth()->id());
+
+        $pendingAppointments = Appointment::all()
+            ->where('status', 'Reservada')
+            ->where('doctor_id', auth()->id());
+
+        $oldAppointments = Appointment::all()
+            ->whereIn('status', ['Atendida', 'Cancelada'])
+            ->where('doctor_id', auth()->id());
+        }
+        elseif ($role == 'paciente')
+        {
+        //Pacientes
         $confirmedAppointments = Appointment::all()
             ->where('status', 'Confirmada')
             ->where('patient_id', auth()->id());
@@ -26,8 +45,9 @@ class AppointmentController extends Controller
         $oldAppointments = Appointment::all()
             ->whereIn('status', ['Atendida', 'Cancelada'])
             ->where('patient_id', auth()->id());
+        };
 
-        return view('appointments.index', compact('confirmedAppointments', 'pendingAppointments', 'oldAppointments'));
+        return view('appointments.index', compact('confirmedAppointments', 'pendingAppointments', 'oldAppointments', 'role'));
     }
 
     public function create(HorarioServiceInterface $horarioServiceInterface)
@@ -146,6 +166,7 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointments)
     {
-        return view('appointments.show', compact('appointments'));
+        $role = auth()->user()->role;
+        return view('appointments.show', compact('appointments', 'role'));
     }
 }

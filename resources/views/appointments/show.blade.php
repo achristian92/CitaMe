@@ -25,10 +25,18 @@
                     <i class="fas fa-clock"></i>
                     <strong>Hora de Atención:</strong> {{ $appointments->scheduled_time }}
                 </li>
+                @if ($role == 'paciente')
                 <li class="list-group-item">
                     <i class="fas fa-user-md"></i>
                     <strong>Doctor:</strong> {{ $appointments->doctor->name }}
                 </li>
+            @elseif ($role == 'doctor')
+                <li class="list-group-item">
+                    <i class="fas fa-user"></i>
+                    <strong>Paciente:</strong> {{ $appointments->patient->name }}
+                </li>
+            @endif
+
                 <li class="list-group-item">
                     <i class="fas fa-stethoscope"></i>
                     <strong>Especialidad:</strong> {{ $appointments->specialty->name }}

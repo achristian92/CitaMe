@@ -5,7 +5,11 @@
             <tr>
                 <th scope="col">Descripción</th>
                 <th scope="col">Especialidad</th>
-                <th scope="col">Médico</th>
+                @if ($role == 'patient')
+                    <th scope="col">Médico</th>
+                @elseif ($role == 'doctor')
+                    <th scope="col">Paciente</th>
+                @endif
                 <th scope="col">Fecha</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Tipo</th>
@@ -22,9 +26,15 @@
                     <td>
                         {{ $cita->specialty->name }}
                     </td>
-                    <td>
-                        {{ $cita->doctor->name }}
-                    </td>
+                    @if ($role == 'patient')
+                        <td>
+                            {{ $cita->doctor->name }}
+                        </td>
+                    @elseif ($role == 'doctor')
+                        <td>
+                            {{ $cita->patient->name }}
+                        </td>
+                    @endif
                     <td>
                         {{ $cita->scheduled_date }}
                     </td>
@@ -35,9 +45,20 @@
                         {{ $cita->type }}
                     </td>
                     <td>
-                        <form action="{{ url('miscitas/' . $cita->id. '/cancel' ) }}" method="POST">
+                        @if ($role == 'doctor')
+                        <form action="{{ url('miscitas/' . $cita->id. '/confirm' ) }}" method="POST" class="d-inline-block">
                             @csrf
-                            <button type="submit" class="btn btn-sn btn-danger" title="Cancelar Cita">Cancelar</button>
+                            <button type="submit" class="btn btn-sn btn-success" title="Confirmar Cita">
+                                <i class="ni ni-check-bold"></i>
+                            </button>
+                        </form>
+                        @endif
+
+                        <form action="{{ url('miscitas/' . $cita->id. '/cancel' ) }}" method="POST" class="d-inline-block">
+                            @csrf
+                            <button type="submit" class="btn btn-sn btn-danger" title="Cancelar Cita">
+                                <i class="ni ni-fat-delete"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>
