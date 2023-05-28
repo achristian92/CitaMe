@@ -38,6 +38,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //Ruta de Reportes
     Route::get('/reportes/citas/line', [App\Http\Controllers\admin\ChartController::class, 'appointments']);
+    Route::get('/reportes/doctors/column', [App\Http\Controllers\admin\ChartController::class, 'doctors']);
+    Route::get('/reportes/doctors/column/data', [App\Http\Controllers\admin\ChartController::class, 'doctorsJason']);
 });
 
 

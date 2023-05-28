@@ -41,9 +41,10 @@ class User extends Authenticatable
         'pivot'
     ];
 
-    public function specialties(){
+    public function specialties()
+    {
         return $this->belongsToMany(Specialty::class)->withTimestamps();
-       }
+    }
 
     /**
      * The attributes that should be cast.
@@ -54,11 +55,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopePatients($query){
+    public function scopePatients($query)
+    {
         return $query->where('role', 'paciente');
     }
 
-    public function scopeDoctors($query){
+    public function scopeDoctors($query)
+    {
         return $query->where('role', 'doctor');
     }
+
+    public function asDoctorAppointments(){
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    public function attendedAppointments(){
+        return $this->asDoctorAppointments()->where('status', 'Atendida');
+    }
+
+    public function cancelledAppointments(){
+        return $this->asDoctorAppointments()->where('status', 'Cancelada');
+    }
+
+    public function asPatientAppointments(){
+        return $this->hasMany(Appointment::class, 'patient_id');
+    }
+
+
 }
