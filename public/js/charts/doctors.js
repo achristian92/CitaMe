@@ -33,16 +33,28 @@ Highcharts.chart('container', {
     series: []
 });
 
+
+let $start, $end;
 function fetchData()
 {
+    const $startDate = $start.val();
+    const $endDate = $end.val();
+    const $url = `/reportes/doctors/column/data?start=${$startDate}&end=${$endDate}`;
     //Fetch API
-    fetch('/reportes/doctors/column/data')
+    fetch($url)
     .then(function (response) {
         return response.json();
     })
     .then(function (myJason) {
         //console.log(data);
         chart.xAxis[0].setCategories(myJason.categories);
+
+        if(chart.series.length > 0)
+        {
+            chart.series[1].remove();
+            chart.series[0].remove();
+        }
+
         chart.addSeries(myJason.series[0]);//Citas Atendidas
         chart.addSeries(myJason.series[1]);//Citas Canceladas
 
@@ -50,5 +62,10 @@ function fetchData()
 }
 
 $(function(){
+    $start = $('#startDate');
+    $end = $('#endDate');
     fetchData();
+
+    $start.change(fetchData);
+    $end.change(fetchData);
 });
