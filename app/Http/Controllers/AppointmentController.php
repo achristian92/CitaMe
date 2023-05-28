@@ -15,46 +15,41 @@ class AppointmentController extends Controller
 
     public function index()
     {
-
         $role = auth()->user()->role;
 
-        if ($role == 'admin'){
-        //Administrador
-        $confirmedAppointments = Appointment::all()
-            ->where('status', 'Confirmada');
-        $pendingAppointments = Appointment::all()
-            ->where('status', 'Reservada');
-        $oldAppointments = Appointment::all()
-            ->whereIn('status', ['Atendida', 'Cancelada']);
-        }elseif ($role == 'doctor'){
-        //Medicos
-        $confirmedAppointments = Appointment::all()
-            ->where('status', 'Confirmada')
-            ->where('doctor_id', auth()->id());
+        // Definir variables con valores predeterminados
+        $confirmedAppointments = [];
+        $pendingAppointments = [];
+        $oldAppointments = [];
 
-        $pendingAppointments = Appointment::all()
-            ->where('status', 'Reservada')
-            ->where('doctor_id', auth()->id());
-
-        $oldAppointments = Appointment::all()
-            ->whereIn('status', ['Atendida', 'Cancelada'])
-            ->where('doctor_id', auth()->id());
+        if ($role == 'admin') {
+            // Administrador
+            $confirmedAppointments = Appointment::where('status', 'Confirmada')->get();
+            $pendingAppointments = Appointment::where('status', 'Reservada')->get();
+            $oldAppointments = Appointment::whereIn('status', ['Atendida', 'Cancelada'])->get();
+        } elseif ($role == 'doctor') {
+            // Medicos
+            $confirmedAppointments = Appointment::where('status', 'Confirmada')
+                ->where('doctor_id', auth()->id())
+                ->get();
+            $pendingAppointments = Appointment::where('status', 'Reservada')
+                ->where('doctor_id', auth()->id())
+                ->get();
+            $oldAppointments = Appointment::whereIn('status', ['Atendida', 'Cancelada'])
+                ->where('doctor_id', auth()->id())
+                ->get();
+        } elseif ($role == 'paciente') {
+            // Pacientes
+            $confirmedAppointments = Appointment::where('status', 'Confirmada')
+                ->where('patient_id', auth()->id())
+                ->get();
+            $pendingAppointments = Appointment::where('status', 'Reservada')
+                ->where('patient_id', auth()->id())
+                ->get();
+            $oldAppointments = Appointment::whereIn('status', ['Atendida', 'Cancelada'])
+                ->where('patient_id', auth()->id())
+                ->get();
         }
-        elseif ($role == 'paciente')
-        {
-        //Pacientes
-        $confirmedAppointments = Appointment::all()
-            ->where('status', 'Confirmada')
-            ->where('patient_id', auth()->id());
-
-        $pendingAppointments = Appointment::all()
-            ->where('status', 'Reservada')
-            ->where('patient_id', auth()->id());
-
-        $oldAppointments = Appointment::all()
-            ->whereIn('status', ['Atendida', 'Cancelada'])
-            ->where('patient_id', auth()->id());
-        };
 
         return view('appointments.index', compact('confirmedAppointments', 'pendingAppointments', 'oldAppointments', 'role'));
     }
@@ -145,7 +140,7 @@ class AppointmentController extends Controller
 
         $notification = 'La Cita se ha Realizado Exitosamente.';
 
-        return back()->with(compact('notification'));
+        return redirect('/miscitas')->with(compact('notification'));
     }
 
     public function cancel(Appointment $appointments, Request $request)
