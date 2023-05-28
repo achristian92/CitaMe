@@ -35,6 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //Ruta de Pacientes
     Route::resource('pacientes','App\Http\Controllers\admin\PatientController');
+
+    //Ruta de Reportes
+    Route::get('/reportes/citas/line', [App\Http\Controllers\admin\ChartController::class, 'appointments']);
 });
 
 

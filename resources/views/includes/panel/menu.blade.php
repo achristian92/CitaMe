@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-            <a class="nav-link" href="/mis citas">
+            <a class="nav-link" href="{{url('/reportes/citas/line')}}">
                 <i class="ni ni-books text-default"></i> Citas
             </a>
         </li>
