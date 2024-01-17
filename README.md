@@ -47,3 +47,4 @@ Esto es parte de un curso en Youtube, abajo del todo encontraran el enlace.
 ## Enlaces Útiles 🔗
 
 - **Curso en YouTube:** [CitaMe en YouTube](https://www.youtube.com/watch?v=XTwtZfxiIlg&list=PLA2JPb2b8Fg50FoUoycL7czIvwci_uppd&pp=iAQB)
+- **Canal del Creador** [ReyTech](https://www.youtube.com/@devReyTech).
