@@ -2,6 +2,8 @@
 
 ¡Bienvenido/a a CitaMe! La aplicación web basada en Laravel 8 que simplifica la agendación y gestión de citas médicas. Con CitaMe, puedes organizar tus consultas médicas de manera eficiente, brindando a médicos y pacientes un entorno fácil de usar y completamente personalizado. ¡Vamos a explorar todas las increíbles características que ofrece esta plataforma!
 
+Esto es parte de un curso en Youtube, abajo del todo encontraran el enlace.
+
 ## Características Destacadas 🚀
 
 - 📅 **Agendado de Citas:** Pacientes pueden programar citas con médicos seleccionando especialidades, fechas y horas disponibles.
