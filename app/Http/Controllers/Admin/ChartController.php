@@ -15,13 +15,12 @@ class ChartController extends Controller
     {
 
         $monthCounts = Appointment::select(
-            DB::raw('MONTH(created_at) as month'),
-            DB::raw('COUNT(1) as value')
+            DB::raw('extract(month from "created_at") as month'),
+            DB::raw('COUNT(1) AS value')
         )
             ->groupBy('month')
             ->get()
             ->toArray();
-
         $counts = array_fill(0, 12, 0);
         foreach ($monthCounts as $monthCount) {
             $index = $monthCount['month'] - 1;

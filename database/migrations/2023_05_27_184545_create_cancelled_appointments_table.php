@@ -17,8 +17,8 @@ class CreateCancelledAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('justification');
 
-            $table->bigInteger('cancelled_by')->unsigned();
-            $table->foreign('cancelled_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('cancelled_by_id')->unsigned();
+            $table->foreign('cancelled_by_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
             $table->bigInteger('appointment_id')->unsigned();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade')->onUpdate('cascade');
